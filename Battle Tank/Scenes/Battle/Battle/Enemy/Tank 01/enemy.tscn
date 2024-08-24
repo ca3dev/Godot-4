@@ -1,0 +1,51 @@
+[gd_scene load_steps=9 format=3 uid="uid://jqfb0vy74yyo"]
+
+[ext_resource type="ArrayMesh" uid="uid://b500b1sf8j8ng" path="res://3D/Player/untitled.obj" id="1_wofqo"]
+[ext_resource type="Script" path="res://Scenes/Battle/Battle/Enemy/Tank 01/FSM/fsm.gd" id="2_rip2q"]
+[ext_resource type="Script" path="res://Scenes/Battle/Battle/Enemy/Tank 01/FSM/idle.gd" id="3_qprmt"]
+[ext_resource type="Script" path="res://Scenes/Battle/Battle/Enemy/Tank 01/FSM/walk.gd" id="4_j4aje"]
+[ext_resource type="Script" path="res://Scenes/Battle/Battle/Enemy/Tank 01/FSM/shoot.gd" id="5_swrt8"]
+[ext_resource type="PackedScene" uid="uid://ck61le8uwccn" path="res://Scenes/Battle/Battle/Enemy/Enemy bullet.tscn" id="6_d8rfa"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cixys"]
+albedo_color = Color(0.0723268, 0.346221, 0.490406, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bnqra"]
+size = Vector3(0.394531, 0.395508, 0.44873)
+
+[node name="Enemy" type="CharacterBody3D" groups=["Enemy"]]
+collision_layer = 16
+collision_mask = 31
+
+[node name="Untitled" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.37145, -0.0146508)
+material_override = SubResource("StandardMaterial3D_cixys")
+mesh = ExtResource("1_wofqo")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0234375, 0.270406, -0.017334)
+shape = SubResource("BoxShape3D_bnqra")
+
+[node name="FSM" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_rip2q")
+
+[node name="IDLE" type="Node" parent="FSM"]
+script = ExtResource("3_qprmt")
+
+[node name="WALK" type="Node" parent="FSM"]
+script = ExtResource("4_j4aje")
+walk_speed = 1.0
+
+[node name="ChangeState" type="Timer" parent="FSM"]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="Shoot" type="Timer" parent="FSM"]
+one_shot = true
+script = ExtResource("5_swrt8")
+Bullet = ExtResource("6_d8rfa")
+
+[connection signal="timeout" from="FSM/ChangeState" to="FSM/IDLE" method="_on_change_state_timeout"]
+[connection signal="timeout" from="FSM/Shoot" to="FSM/Shoot" method="_on_timeout"]

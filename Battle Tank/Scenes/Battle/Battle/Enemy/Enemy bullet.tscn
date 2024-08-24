@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://ck61le8uwccn"]
+
+[ext_resource type="Script" path="res://Scenes/Battle/Battle/Enemy/Bullet/enemy_bullet.gd" id="1_dvh53"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tv066"]
+albedo_color = Color(0.776471, 0.133422, 0.166992, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_aas84"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_kawue"]
+radius = 0.275857
+
+[node name="EnemyBullets" type="CharacterBody3D" groups=["EnemyBullets"]]
+collision_layer = 32
+collision_mask = 41
+script = ExtResource("1_dvh53")
+speed = 5.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_tv066")
+mesh = SubResource("SphereMesh_aas84")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_kawue")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.5
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

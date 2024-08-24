@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://ci3cxtqx8w6qt"]
+
+[ext_resource type="PackedScene" uid="uid://u8n0svofrisl" path="res://Engine/Modules/Level Manager/level_manager.tscn" id="1_kt7p6"]
+[ext_resource type="PackedScene" uid="uid://bmgbf755ghx7q" path="res://Engine/Modules/GUI/gui.tscn" id="2_gnfx2"]
+
+[node name="Battle" type="Node2D"]
+
+[node name="LevelManager" parent="." instance=ExtResource("1_kt7p6")]
+
+[node name="GUI" parent="." instance=ExtResource("2_gnfx2")]

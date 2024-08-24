@@ -1,0 +1,56 @@
+[gd_scene load_steps=13 format=3 uid="uid://dqfsvb8ngos2m"]
+
+[ext_resource type="PackedScene" uid="uid://becsbgfggagu6" path="res://Engine/Modules/Character/player_prototype_FSM.tscn" id="1_h2yas"]
+[ext_resource type="PackedScene" uid="uid://b5aixwast5ld5" path="res://Engine/Modules/Character/sprite_data_prototype.tscn" id="2_khs1t"]
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_u0k6j"]
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_fvt38"]
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_5qm18"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dd30w"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_20yrr"]
+advance_mode = 2
+advance_condition = &"Attack"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8oo5i"]
+advance_mode = 2
+advance_condition = &"Hurt"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_n1f64"]
+advance_mode = 2
+advance_condition = &"EndAnim"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_773yy"]
+advance_mode = 2
+advance_condition = &"Hurt"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_im3oe"]
+advance_mode = 2
+advance_condition = &"EndAnim"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_iqhwa"]
+states/ATTACK/node = SubResource("AnimationNodeBlendSpace1D_u0k6j")
+states/ATTACK/position = Vector2(324, 152)
+states/HURT/node = SubResource("AnimationNodeBlendSpace1D_fvt38")
+states/HURT/position = Vector2(461, 152)
+states/MOVE/node = SubResource("AnimationNodeBlendSpace2D_5qm18")
+states/MOVE/position = Vector2(367, 76)
+transitions = ["Start", "MOVE", SubResource("AnimationNodeStateMachineTransition_dd30w"), "MOVE", "ATTACK", SubResource("AnimationNodeStateMachineTransition_20yrr"), "ATTACK", "HURT", SubResource("AnimationNodeStateMachineTransition_8oo5i"), "HURT", "MOVE", SubResource("AnimationNodeStateMachineTransition_n1f64"), "MOVE", "HURT", SubResource("AnimationNodeStateMachineTransition_773yy"), "ATTACK", "MOVE", SubResource("AnimationNodeStateMachineTransition_im3oe")]
+
+[node name="Player Prototype" instance=ExtResource("1_h2yas")]
+
+[node name="Sprite Data Prototype" parent="Parent" index="1" instance=ExtResource("2_khs1t")]
+
+[node name="Anim" type="AnimationTree" parent="." index="3"]
+unique_name_in_owner = true
+tree_root = SubResource("AnimationNodeStateMachine_iqhwa")
+parameters/conditions/Attack = false
+parameters/conditions/EndAnim = false
+parameters/conditions/Hurt = false
+parameters/ATTACK/blend_position = 0
+parameters/HURT/blend_position = 0
+parameters/MOVE/blend_position = Vector2(0, 0)

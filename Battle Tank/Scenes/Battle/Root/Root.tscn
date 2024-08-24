@@ -1,0 +1,192 @@
+[gd_scene load_steps=27 format=3 uid="uid://bj7n2gfa1q0yb"]
+
+[ext_resource type="PackedScene" uid="uid://78ov1uttubnv" path="res://Scenes/Battle/Battle/Player/Player.tscn" id="1_1ifu5"]
+[ext_resource type="Script" path="res://Scenes/Battle/Root/root.gd" id="1_mei2k"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="2_ay8gr"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_erv68"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/camera_3d_resource.gd" id="4_sfyh1"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="5_n5vw0"]
+[ext_resource type="Script" path="res://Scenes/Battle/Battle/Managers/bullets.gd" id="6_dffr7"]
+[ext_resource type="PackedScene" uid="uid://jqfb0vy74yyo" path="res://Scenes/Battle/Battle/Enemy/Tank 01/enemy.tscn" id="7_dy278"]
+[ext_resource type="Script" path="res://Scenes/Battle/Battle/Managers/barrels.gd" id="8_im8tl"]
+[ext_resource type="PackedScene" uid="uid://bciv4g4r16ex5" path="res://Scenes/Battle/Battle/GUI/gui.tscn" id="8_xpyq0"]
+[ext_resource type="PackedScene" uid="uid://b0x2qvb1i5rlo" path="res://Scenes/Battle/Battle/Items/Barrel.tscn" id="9_xck7x"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hbmx4"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_f8rfn"]
+sky_material = SubResource("ProceduralSkyMaterial_hbmx4")
+
+[sub_resource type="Environment" id="Environment_7vrnr"]
+background_mode = 2
+sky = SubResource("Sky_f8rfn")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="Resource" id="Resource_0o25k"]
+script = ExtResource("3_erv68")
+duration = 1.0
+transition = 0
+ease = 2
+
+[sub_resource type="Resource" id="Resource_ux7qt"]
+script = ExtResource("4_sfyh1")
+cull_mask = 1048575
+h_offset = 0.0
+v_offset = 0.0
+fov = 75.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_d7nsc"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_rrd6j"]
+data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_xfc5n"]
+data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_86hh4"]
+data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_2o1mx"]
+data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_45h1l"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_u17qd"]
+noise = SubResource("FastNoiseLite_45h1l")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6j33y"]
+albedo_color = Color(0.241111, 0.280044, 0.181391, 1)
+roughness_texture = SubResource("NoiseTexture2D_u17qd")
+uv1_scale = Vector3(50, 50, 50)
+
+[sub_resource type="QuadMesh" id="QuadMesh_56xej"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_k8cxy"]
+data = PackedVector3Array(0.5, -0.5, 0, -0.5, -0.5, 0, 0.5, 0.5, 0, -0.5, -0.5, 0, -0.5, 0.5, 0, 0.5, 0.5, 0)
+
+[node name="Battle" type="Node3D"]
+script = ExtResource("1_mei2k")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_7vrnr")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0.433016, -0.39952, 0.808011, -0.250002, 0.808011, 0.533496, 0, 3, 0)
+shadow_enabled = true
+
+[node name="Player" parent="." instance=ExtResource("1_1ifu5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.278715, 0)
+
+[node name="PhantomCamera3D" type="Node3D" parent="." node_paths=PackedStringArray("follow_target", "look_at_target")]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 3.98582, 3.70711)
+script = ExtResource("2_ay8gr")
+follow_mode = 5
+follow_target = NodePath("../Player")
+look_at_target = NodePath("../Player")
+tween_resource = SubResource("Resource_0o25k")
+camera_3d_resource = SubResource("Resource_ux7qt")
+follow_offset = Vector3(0, 3, 3)
+dead_zone_width = 0.576
+dead_zone_height = 0.545
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 3.98582, 3.70711)
+
+[node name="PhantomCameraHost" type="Node" parent="Camera3D"]
+script = ExtResource("5_n5vw0")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 3.47752, 0, 0, 0, 1, 0, 0, 2.73994)
+mesh = SubResource("BoxMesh_d7nsc")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+collision_layer = 8
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_rrd6j")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 3.47752, 0, 0, 0, 1, 4.41063, 0, 6.55651e-07)
+mesh = SubResource("BoxMesh_d7nsc")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D2"]
+collision_layer = 8
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D2/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_xfc5n")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 3.47752, 0, 0, 0, 1, -0.0501204, 0, -4.17673)
+mesh = SubResource("BoxMesh_d7nsc")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D3"]
+collision_layer = 8
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D3/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_86hh4")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 3.47752, 0, 0, 0, 1, -4.66123, 0, -0.200483)
+mesh = SubResource("BoxMesh_d7nsc")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D4"]
+collision_layer = 8
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D4/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_2o1mx")
+
+[node name="Ground" type="MeshInstance3D" parent="."]
+transform = Transform3D(50, 0, 0, 0, -2.18557e-06, 1, 0, -50, -4.37114e-08, -0.00402832, -0.0227523, 0.00402832)
+material_override = SubResource("StandardMaterial3D_6j33y")
+mesh = SubResource("QuadMesh_56xej")
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ground"]
+collision_layer = 8
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_k8cxy")
+
+[node name="EnemyTanks" type="Node3D" parent="."]
+
+[node name="Enemy" parent="EnemyTanks" instance=ExtResource("7_dy278")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.3338)
+
+[node name="Enemy2" parent="EnemyTanks" instance=ExtResource("7_dy278")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.72701, 0, -2.3338)
+
+[node name="Enemy3" parent="EnemyTanks" instance=ExtResource("7_dy278")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.63366, 0, -2.3338)
+
+[node name="Enemy4" parent="EnemyTanks" instance=ExtResource("7_dy278")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.63366, 0, -5.54346)
+
+[node name="Enemy5" parent="EnemyTanks" instance=ExtResource("7_dy278")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.316822, 0, -5.54346)
+
+[node name="Enemy6" parent="EnemyTanks" instance=ExtResource("7_dy278")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.16855, 0, -5.54346)
+
+[node name="Bullets" type="Node3D" parent="."]
+script = ExtResource("6_dffr7")
+
+[node name="Barrels" type="Node3D" parent="."]
+script = ExtResource("8_im8tl")
+Barrel = ExtResource("9_xck7x")
+
+[node name="TopLeft" type="Marker3D" parent="Barrels"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.81075, 0.259499, -6.87939)
+
+[node name="BottomRight" type="Marker3D" parent="Barrels"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.58305, 0.234785, 4.0853)
+
+[node name="GUI" parent="." instance=ExtResource("8_xpyq0")]

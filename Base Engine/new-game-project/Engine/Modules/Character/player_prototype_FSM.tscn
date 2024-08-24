@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://becsbgfggagu6"]
+
+[ext_resource type="PackedScene" uid="uid://cocxmigsnxg0t" path="res://Engine/Modules/Character/player_prototype.tscn" id="1_wf6xq"]
+[ext_resource type="PackedScene" uid="uid://casa4y1wow040" path="res://Engine/Modules/Character/FSM/fsm_base.tscn" id="2_q1xde"]
+
+[node name="Player Prototype" instance=ExtResource("1_wf6xq")]
+
+[node name="FSM Base" parent="." index="2" node_paths=PackedStringArray("Character") instance=ExtResource("2_q1xde")]
+Character = NodePath("..")
+
+[node name="Code" type="Node" parent="." index="3"]
+
+[node name="Interface" type="Node" parent="Code" index="0"]

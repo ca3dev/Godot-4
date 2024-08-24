@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://brfq3b1lv6dl3"]
+
+[ext_resource type="Texture2D" uid="uid://c0uxbsbjl6ue1" path="res://3D/Player/player_Tank_C.png" id="1_01muw"]
+
+[resource]
+albedo_texture = ExtResource("1_01muw")
+texture_filter = 2

@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dtvqqo5q061o4"]
+
+[ext_resource type="Script" path="res://Engine/Modules/Variables/variables.gd" id="1_qbvke"]
+
+[node name="Variables" type="Node"]
+script = ExtResource("1_qbvke")
+Mode = 2

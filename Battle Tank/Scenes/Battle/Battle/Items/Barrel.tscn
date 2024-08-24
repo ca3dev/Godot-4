@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://b0x2qvb1i5rlo"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6yh81"]
+albedo_color = Color(0.664912, 0.0673795, 0.0929834, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_um2ao"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_6dk5w"]
+
+[node name="StaticBody3D" type="StaticBody3D" groups=["Barrel"]]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_6yh81")
+mesh = SubResource("CylinderMesh_um2ao")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+shape = SubResource("CylinderShape3D_6dk5w")

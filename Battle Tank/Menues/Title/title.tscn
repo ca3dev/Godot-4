@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://dpaameknumgum"]
+
+[ext_resource type="Script" path="res://Menues/Title/title.gd" id="1_hka0c"]
+[ext_resource type="Texture2D" uid="uid://brd1ky2id2ok4" path="res://2D/GUI/portrait.png" id="1_nv2hx"]
+
+[node name="TITLE" type="Node2D"]
+script = ExtResource("1_hka0c")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -4.0
+offset_top = -6.0
+offset_right = 1157.0
+offset_bottom = 656.0
+color = Color(0.10975, 0.00615559, 0.162881, 1)
+
+[node name="Portrait" type="Sprite2D" parent="."]
+position = Vector2(206, 395)
+scale = Vector2(0.6075, 0.635)
+texture = ExtResource("1_nv2hx")
+
+[node name="startbutton" type="Button" parent="."]
+offset_left = 659.0
+offset_top = 491.0
+offset_right = 807.0
+offset_bottom = 554.0
+text = "START"
+
+[node name="start" type="Label" parent="."]
+offset_left = 517.0
+offset_top = 265.0
+offset_right = 728.0
+offset_bottom = 360.0
+theme_override_font_sizes/font_size = 60
+text = "BATTLE TANK"
+
+[connection signal="pressed" from="startbutton" to="." method="_on_startbutton_pressed"]

@@ -1,0 +1,39 @@
+[gd_scene load_steps=2 format=3 uid="uid://imulj5ubndns"]
+
+[ext_resource type="PackedScene" uid="uid://7pvev4ibby8s" path="res://Engine/Modules/GUI/player_gui.tscn" id="1_lofyv"]
+
+[node name="PlayerGUI2" instance=ExtResource("1_lofyv")]
+
+[node name="Panel" parent="." index="0"]
+offset_left = 889.0
+offset_right = 1156.0
+
+[node name="Panel2" parent="." index="1"]
+offset_left = 942.0
+offset_top = 561.0
+offset_right = 1152.0
+offset_bottom = 642.0
+
+[node name="HP" parent="." index="2"]
+offset_left = 888.0
+offset_top = 3.0
+offset_right = 1148.0
+offset_bottom = 30.0
+fill_mode = 1
+
+[node name="Mana" parent="." index="3"]
+offset_left = 960.0
+offset_top = 594.0
+offset_right = 1101.0
+offset_bottom = 621.0
+fill_mode = 1
+
+[node name="Stock" parent="." index="4"]
+offset_left = 1112.0
+offset_top = 563.0
+offset_right = 1156.0
+offset_bottom = 646.0
+
+[node name="Label" parent="." index="5"]
+offset_left = 1063.0
+offset_right = 1114.0

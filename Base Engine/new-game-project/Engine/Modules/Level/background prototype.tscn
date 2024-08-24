@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3 uid="uid://0aayad4x1swt"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_30l4p"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_jsk4l"]
+sky_material = SubResource("ProceduralSkyMaterial_30l4p")
+
+[sub_resource type="Environment" id="Environment_3nwyq"]
+background_mode = 2
+sky = SubResource("Sky_jsk4l")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_g4n0w"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y0w5n"]
+albedo_color = Color(0.506832, 0.738642, 0.379006, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_4wjvu"]
+
+[node name="Background" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_3nwyq")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.999763, 0.0188653, -0.0108918, 0.00632639, 0.226998, 0.973875, 0.0208449, -0.973713, 0.226824, 0, 2.27608, 0)
+shadow_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.990529, 0.137306, 0, -0.137306, 0.990529, 0, 1.84116, 1.82567)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(41.3387, 0, 0, 0, -1.33601e-06, 1, 0, -30.5644, -4.37114e-08, 0.103283, 0, -12.0838)
+mesh = SubResource("QuadMesh_g4n0w")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.764291, 0, 0.644871, 0, 1, 0, -0.644871, 0, 0.764291, 0, 0.509674, -3.24655)
+material_override = SubResource("StandardMaterial3D_y0w5n")
+mesh = SubResource("BoxMesh_4wjvu")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.764291, 0, 0.644871, 0, 1, 0, -0.644871, 0, 0.764291, 2.52275, 0.509674, -4.81701)
+material_override = SubResource("StandardMaterial3D_y0w5n")
+mesh = SubResource("BoxMesh_4wjvu")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.764291, 0, 0.644871, 0, 1, 0, -0.644871, 0, 0.764291, -2.43921, 0.509674, -5.43516)
+material_override = SubResource("StandardMaterial3D_y0w5n")
+mesh = SubResource("BoxMesh_4wjvu")

@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3 uid="uid://da5l238pywi75"]
+
+[ext_resource type="Script" path="res://Scenes/Battle/Battle/Music/music.gd" id="1_01bcb"]
+[ext_resource type="AudioStream" uid="uid://b07bk8acl4tr7" path="res://Music/Sounds/shoot 01.wav" id="1_6vqnc"]
+[ext_resource type="AudioStream" uid="uid://c5ix4uapriwto" path="res://Music/Sounds/shoot 02.wav" id="2_o8stx"]
+[ext_resource type="AudioStream" uid="uid://bkt0wkok4ulg4" path="res://Music/Sounds/shoot 03.wav" id="3_2ioqg"]
+[ext_resource type="AudioStream" uid="uid://b7f48vns1beu4" path="res://Music/Sounds/shoot 04.wav" id="4_qatgs"]
+
+[node name="Music" type="Node"]
+script = ExtResource("1_01bcb")
+
+[node name="Shoot" type="Node" parent="."]
+
+[node name="1" type="AudioStreamPlayer" parent="Shoot"]
+stream = ExtResource("1_6vqnc")
+
+[node name="2" type="AudioStreamPlayer" parent="Shoot"]
+stream = ExtResource("2_o8stx")
+
+[node name="3" type="AudioStreamPlayer" parent="Shoot"]
+stream = ExtResource("3_2ioqg")
+
+[node name="4" type="AudioStreamPlayer" parent="Shoot"]
+stream = ExtResource("4_qatgs")

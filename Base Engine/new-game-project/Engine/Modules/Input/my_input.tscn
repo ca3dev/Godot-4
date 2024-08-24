@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://bnnidggkfvpvy"]
+
+[ext_resource type="Script" path="res://Engine/Modules/Input/my_input.gd" id="1_jyaty"]
+[ext_resource type="Script" path="res://Engine/Modules/Input/reader.gd" id="1_ks4q2"]
+[ext_resource type="Script" path="res://Engine/Modules/Input/p_1.gd" id="1_nhfr1"]
+[ext_resource type="Script" path="res://Engine/Modules/Input/buffer.gd" id="2_gnm6v"]
+[ext_resource type="Script" path="res://Engine/Modules/Input/checker.gd" id="3_fg5bs"]
+
+[node name="MyInput" type="Node"]
+script = ExtResource("1_jyaty")
+
+[node name="Reader" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("1_ks4q2")
+
+[node name="Buffer" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_gnm6v")
+
+[node name="Buffer2" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_gnm6v")
+
+[node name="Checker" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3_fg5bs")
+
+[node name="P1" type="Node" parent="."]
+script = ExtResource("1_nhfr1")

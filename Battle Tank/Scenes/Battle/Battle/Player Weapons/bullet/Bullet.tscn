@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://dwpjyr3o64nwq"]
+
+[ext_resource type="Script" path="res://Scenes/Battle/Battle/Player Weapons/bullet/bullet.gd" id="1_cf6ad"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_pu4s6"]
+radius = 0.0629983
+
+[sub_resource type="SphereMesh" id="SphereMesh_wr63e"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ua5hy"]
+radius = 0.170556
+
+[node name="Ball" type="RigidBody3D"]
+collision_layer = 2
+collision_mask = 28
+script = ExtResource("1_cf6ad")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_pu4s6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+mesh = SubResource("SphereMesh_wr63e")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 2
+collision_mask = 28
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_ua5hy")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://b378ylap6ehh2"]
+
+[ext_resource type="PackedScene" uid="uid://bfa76lweja8xq" path="res://Data/Characters/Hero/Heroe.tscn" id="1_vxvhw"]
+
+[node name="Character Manager" type="Node2D"]
+
+[node name="Heroe" parent="." instance=ExtResource("1_vxvhw")]
+position = Vector2(366, 530)
+
+[node name="Heroe2" parent="." instance=ExtResource("1_vxvhw")]
+position = Vector2(672, 523)

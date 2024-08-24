@@ -1,0 +1,287 @@
+[gd_scene load_steps=27 format=3 uid="uid://78ov1uttubnv"]
+
+[ext_resource type="Script" path="res://Scenes/Battle/Battle/Player/player.gd" id="1_ehwsy"]
+[ext_resource type="Script" path="res://Scenes/Battle/Battle/Player/FSM/fsm.gd" id="2_1d7kf"]
+[ext_resource type="PackedScene" uid="uid://bj3wr7ecb612k" path="res://3D/Player/player.glb" id="2_pvsxl"]
+[ext_resource type="Script" path="res://Scenes/Battle/Battle/Player/FSM/idle.gd" id="3_3tt72"]
+[ext_resource type="Material" uid="uid://brfq3b1lv6dl3" path="res://3D/Player/tank.tres" id="3_fa0hd"]
+[ext_resource type="Script" path="res://Scenes/Battle/Battle/Player/FSM/walk.gd" id="4_kgu5v"]
+[ext_resource type="Script" path="res://Scenes/Battle/Battle/Player/FSM/shoot.gd" id="5_6ugyx"]
+[ext_resource type="PackedScene" uid="uid://dwpjyr3o64nwq" path="res://Scenes/Battle/Battle/Player Weapons/bullet/Bullet.tscn" id="7_gfisj"]
+[ext_resource type="Script" path="res://Scenes/Battle/Battle/Player/FSM/dash.gd" id="8_03wq4"]
+[ext_resource type="Script" path="res://Scenes/Battle/Battle/Player/FSM/hit.gd" id="9_a68ni"]
+[ext_resource type="Script" path="res://Scenes/Battle/Battle/Player/FSM/bomb.gd" id="11_a8max"]
+[ext_resource type="PackedScene" uid="uid://dx25py6jkqpk5" path="res://Scenes/Battle/Battle/Player/Bomb/bomb.tscn" id="12_1uviq"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_irwv8"]
+size = Vector3(0.511323, 0.437447, 0.877329)
+
+[sub_resource type="Animation" id="Animation_q4ecp"]
+resource_name = "HIT"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("player:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.15, 0.15, 0.15), Vector3(0.3, 0.1, 0.3), Vector3(0.1, 0.3, 0.1), Vector3(0.15, 0.15, 0.15)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("player/Cube:material_override:albedo_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.453342, 0, 0.0554055, 1), Color(0.639906, 0.488954, 0.047128, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_mw8dh"]
+resource_name = "IDLE"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("player:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.15, 0.15, 0.15)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("player/Cube:material_override:albedo_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.750488, 0.728886, 0.611713, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ysu7h"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("player:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.2, 0.15, 0.2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("player/Cube:material_override:albedo_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_evq1i"]
+resource_name = "WALK"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("player:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.2, 0.15, 0.2)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6dpec"]
+_data = {
+"HIT": SubResource("Animation_q4ecp"),
+"IDLE": SubResource("Animation_mw8dh"),
+"RESET": SubResource("Animation_ysu7h"),
+"WALK": SubResource("Animation_evq1i")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_y42ij"]
+animation = &"HIT"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_col8w"]
+animation = &"IDLE"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_inv3y"]
+animation = &"WALK"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_8q8aw"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_col8w")
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_inv3y")
+blend_point_1/pos = 1.0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6r5ua"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_smw6r"]
+advance_mode = 2
+advance_condition = &"HIT"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cr8m8"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_lr85n"]
+states/End/position = Vector2(848, 100)
+states/HIT/node = SubResource("AnimationNodeAnimation_y42ij")
+states/HIT/position = Vector2(384, 174)
+states/MOVE/node = SubResource("AnimationNodeBlendSpace1D_8q8aw")
+states/MOVE/position = Vector2(384, 100)
+transitions = ["Start", "MOVE", SubResource("AnimationNodeStateMachineTransition_6r5ua"), "MOVE", "HIT", SubResource("AnimationNodeStateMachineTransition_smw6r"), "HIT", "MOVE", SubResource("AnimationNodeStateMachineTransition_cr8m8")]
+
+[node name="Player" type="CharacterBody3D" groups=["PLAYER"]]
+collision_mask = 25
+script = ExtResource("1_ehwsy")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00749738, 0.0927007, -0.0165795)
+shape = SubResource("BoxShape3D_irwv8")
+
+[node name="player" parent="." instance=ExtResource("2_pvsxl")]
+transform = Transform3D(0.2, 0, 0, 0, 0.15, 0, 0, 0, 0.2, -0.00209093, 0.00300336, -0.0519683)
+
+[node name="Cube" parent="player" index="0"]
+material_override = ExtResource("3_fa0hd")
+
+[node name="Cube_001" parent="player" index="1"]
+material_override = ExtResource("3_fa0hd")
+
+[node name="Cube_002" parent="player" index="2"]
+material_override = ExtResource("3_fa0hd")
+
+[node name="Cube_003" parent="player" index="3"]
+material_override = ExtResource("3_fa0hd")
+
+[node name="Circle_001" parent="player" index="4"]
+material_override = ExtResource("3_fa0hd")
+
+[node name="Circle_002" parent="player" index="5"]
+material_override = ExtResource("3_fa0hd")
+
+[node name="Circle_003" parent="player" index="6"]
+material_override = ExtResource("3_fa0hd")
+
+[node name="Plane" parent="player" index="7"]
+material_override = ExtResource("3_fa0hd")
+
+[node name="Cube_004" parent="player" index="8"]
+material_override = ExtResource("3_fa0hd")
+
+[node name="Circle_004" parent="player" index="9"]
+material_override = ExtResource("3_fa0hd")
+
+[node name="Circle_005" parent="player" index="10"]
+material_override = ExtResource("3_fa0hd")
+
+[node name="Cube_005" parent="player" index="11"]
+material_override = ExtResource("3_fa0hd")
+
+[node name="Cube_006" parent="player" index="12"]
+material_override = ExtResource("3_fa0hd")
+
+[node name="Cube_007" parent="player" index="13"]
+material_override = ExtResource("3_fa0hd")
+
+[node name="FSM" type="Node" parent="." node_paths=PackedStringArray("current", "root")]
+unique_name_in_owner = true
+script = ExtResource("2_1d7kf")
+current = NodePath("IDLE")
+root = NodePath("..")
+
+[node name="IDLE" type="Node" parent="FSM"]
+script = ExtResource("3_3tt72")
+
+[node name="WALK" type="Node" parent="FSM"]
+script = ExtResource("4_kgu5v")
+walk_speed = 2.0
+
+[node name="SHOOT" type="Node" parent="FSM"]
+script = ExtResource("5_6ugyx")
+Bullet = ExtResource("7_gfisj")
+
+[node name="Timer" type="Timer" parent="FSM/SHOOT"]
+one_shot = true
+
+[node name="DASH" type="Node" parent="FSM"]
+script = ExtResource("8_03wq4")
+walk_speed = 7.0
+
+[node name="HIT" type="Node" parent="FSM"]
+script = ExtResource("9_a68ni")
+
+[node name="Timer" type="Timer" parent="FSM/HIT"]
+one_shot = true
+
+[node name="BOMB" type="Node" parent="FSM"]
+script = ExtResource("11_a8max")
+Bomb = ExtResource("12_1uviq")
+
+[node name="Timer" type="Timer" parent="FSM/BOMB"]
+one_shot = true
+
+[node name="Anims" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_6dpec")
+}
+
+[node name="AnimTree" type="AnimationTree" parent="."]
+unique_name_in_owner = true
+active = false
+root_node = NodePath("%AnimTree/..")
+tree_root = SubResource("AnimationNodeStateMachine_lr85n")
+anim_player = NodePath("../Anims")
+parameters/current_length = false
+parameters/current_position = false
+parameters/current_delta = false
+parameters/conditions/HIT = false
+parameters/End/current_length = null
+parameters/End/current_position = null
+parameters/End/current_delta = null
+parameters/HIT/current_length = null
+parameters/HIT/current_position = null
+parameters/HIT/current_delta = null
+parameters/MOVE/current_length = 0
+parameters/MOVE/current_position = 0
+parameters/MOVE/current_delta = 0
+parameters/MOVE/blend_position = 0.0
+parameters/MOVE/0/current_length = null
+parameters/MOVE/0/current_position = null
+parameters/MOVE/0/current_delta = null
+parameters/MOVE/1/current_length = null
+parameters/MOVE/1/current_position = null
+parameters/MOVE/1/current_delta = null
+parameters/Start/current_length = null
+parameters/Start/current_position = null
+parameters/Start/current_delta = null
+
+[connection signal="timeout" from="FSM/SHOOT/Timer" to="FSM/SHOOT" method="_on_timer_timeout"]
+[connection signal="timeout" from="FSM/HIT/Timer" to="FSM/HIT" method="_on_timer_timeout"]
+[connection signal="timeout" from="FSM/BOMB/Timer" to="FSM/BOMB" method="_on_timer_timeout"]
+
+[editable path="player"]

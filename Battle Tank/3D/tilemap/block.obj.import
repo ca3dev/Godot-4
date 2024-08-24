@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://3iun6q3apab5"
+path="res://.godot/imported/block.obj-c9c44f6aa5197ffc6eb1ac40be5dfe64.mesh"
+
+[deps]
+
+files=["res://.godot/imported/block.obj-c9c44f6aa5197ffc6eb1ac40be5dfe64.mesh"]
+
+source_file="res://3D/tilemap/block.obj"
+dest_files=["res://.godot/imported/block.obj-c9c44f6aa5197ffc6eb1ac40be5dfe64.mesh", "res://.godot/imported/block.obj-c9c44f6aa5197ffc6eb1ac40be5dfe64.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

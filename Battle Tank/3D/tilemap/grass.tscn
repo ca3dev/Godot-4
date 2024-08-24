@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dulb4c4yr0gka"]
+
+[ext_resource type="ArrayMesh" uid="uid://3iun6q3apab5" path="res://3D/tilemap/block.obj" id="1_5q8sf"]
+
+[node name="Grass" type="Node3D"]
+
+[node name="Block" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.357727, 0, 0.485229)
+mesh = ExtResource("1_5q8sf")

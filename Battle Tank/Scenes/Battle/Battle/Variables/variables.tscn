@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cheeg3r5f6f7u"]
+
+[ext_resource type="Script" path="res://Scenes/Battle/Battle/Variables/variables.gd" id="1_6yt4b"]
+
+[node name="Variables" type="Node"]
+script = ExtResource("1_6yt4b")
+HP = 100

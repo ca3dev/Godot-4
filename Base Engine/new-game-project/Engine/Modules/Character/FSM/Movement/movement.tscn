@@ -1,0 +1,29 @@
+[gd_scene load_steps=7 format=3 uid="uid://cn80w28antclc"]
+
+[ext_resource type="Script" path="res://Engine/Modules/Character/FSM/Movement/idle.gd" id="1_fyc5c"]
+[ext_resource type="Script" path="res://Engine/Modules/Character/FSM/Movement/walk.gd" id="2_hl02m"]
+[ext_resource type="Script" path="res://Engine/Modules/Character/FSM/Movement/crouched.gd" id="3_7cint"]
+[ext_resource type="Script" path="res://Engine/Modules/Character/FSM/Movement/jump.gd" id="3_8od0s"]
+[ext_resource type="Script" path="res://Engine/Modules/Character/FSM/Movement/fall.gd" id="4_8v8f2"]
+[ext_resource type="Script" path="res://Engine/Modules/Character/FSM/Movement/fall_v.gd" id="6_tfg32"]
+
+[node name="Movement" type="Node"]
+
+[node name="IDLE" type="Node" parent="."]
+script = ExtResource("1_fyc5c")
+
+[node name="WALK" type="Node" parent="."]
+script = ExtResource("2_hl02m")
+
+[node name="CROUCHED" type="Node" parent="."]
+script = ExtResource("3_7cint")
+
+[node name="JUMP" type="Node" parent="."]
+script = ExtResource("3_8od0s")
+
+[node name="FALL" type="Node" parent="."]
+script = ExtResource("4_8v8f2")
+
+[node name="FALL_V" type="Node" parent="."]
+script = ExtResource("6_tfg32")
+max_gravity = 500.0

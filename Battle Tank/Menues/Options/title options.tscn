@@ -1,0 +1,60 @@
+[gd_scene load_steps=3 format=3 uid="uid://n2lgidoub024"]
+
+[ext_resource type="Texture2D" uid="uid://brd1ky2id2ok4" path="res://2D/GUI/portrait.png" id="1_3movi"]
+[ext_resource type="Script" path="res://Menues/Options/title_options.gd" id="1_jdkkh"]
+
+[node name="TITLE" type="Node2D"]
+script = ExtResource("1_jdkkh")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -4.0
+offset_top = -6.0
+offset_right = 1157.0
+offset_bottom = 656.0
+color = Color(0.10975, 0.00615559, 0.162881, 1)
+
+[node name="Portrait" type="Sprite2D" parent="."]
+position = Vector2(966, 394)
+scale = Vector2(0.6075, 0.635)
+texture = ExtResource("1_3movi")
+
+[node name="StartBattle" type="Button" parent="."]
+offset_left = 140.0
+offset_top = 230.0
+offset_right = 288.0
+offset_bottom = 293.0
+text = "START BATTLE"
+
+[node name="Button2" type="Button" parent="."]
+auto_translate_mode = 1
+offset_left = 143.0
+offset_top = 308.0
+offset_right = 291.0
+offset_bottom = 371.0
+text = "STORY MODE"
+
+[node name="Button3" type="Button" parent="."]
+auto_translate_mode = 1
+offset_left = 144.0
+offset_top = 395.0
+offset_right = 292.0
+offset_bottom = 458.0
+text = "ENDURANCE"
+
+[node name="Button4" type="Button" parent="."]
+auto_translate_mode = 1
+offset_left = 145.0
+offset_top = 472.0
+offset_right = 293.0
+offset_bottom = 535.0
+text = "TIME TRIAL"
+
+[node name="Label" type="Label" parent="."]
+offset_left = 370.0
+offset_top = 47.0
+offset_right = 759.0
+offset_bottom = 142.0
+theme_override_font_sizes/font_size = 60
+text = "BATTLE TANK"
+
+[connection signal="pressed" from="StartBattle" to="." method="_on_start_battle_pressed"]

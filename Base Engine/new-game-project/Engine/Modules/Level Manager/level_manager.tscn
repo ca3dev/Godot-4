@@ -1,0 +1,87 @@
+[gd_scene load_steps=8 format=3 uid="uid://u8n0svofrisl"]
+
+[ext_resource type="PackedScene" uid="uid://b32ghye42l1k2" path="res://Engine/Modules/BackGround Manager/back_ground_manager.tscn" id="1_tt4yi"]
+[ext_resource type="PackedScene" uid="uid://b378ylap6ehh2" path="res://Engine/Modules/Character Manager/character_manager.tscn" id="1_veaa0"]
+[ext_resource type="Script" path="res://Engine/Modules/Level Manager/camera_2d.gd" id="3_gdmla"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tx3ur"]
+size = Vector2(106, 479)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3lm1y"]
+size = Vector2(983, 126)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iy7r6"]
+size = Vector2(2187, 322)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cgkja"]
+size = Vector2(308, 791)
+
+[node name="LevelManager" type="Node2D"]
+
+[node name="BackGround Manager" parent="." instance=ExtResource("1_tt4yi")]
+metadata/_edit_lock_ = true
+
+[node name="Character Manager" parent="." instance=ExtResource("1_veaa0")]
+
+[node name="Heroe" parent="Character Manager" index="0"]
+position = Vector2(668, 568)
+P1 = true
+
+[node name="Heroe2" parent="Character Manager" index="1"]
+position = Vector2(1012, 570)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(830, 387)
+zoom = Vector2(1.5, 1.5)
+script = ExtResource("3_gdmla")
+camera_walk = 200.0
+
+[node name="LEFT" type="StaticBody2D" parent="Camera2D" groups=["WALL"]]
+position = Vector2(-429, -10)
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/LEFT"]
+position = Vector2(-7, -35.5)
+shape = SubResource("RectangleShape2D_tx3ur")
+metadata/_edit_lock_ = true
+
+[node name="RIGHT" type="StaticBody2D" parent="Camera2D" groups=["WALL"]]
+position = Vector2(441, -10)
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/RIGHT"]
+position = Vector2(-7, -35.5)
+shape = SubResource("RectangleShape2D_tx3ur")
+metadata/_edit_lock_ = true
+
+[node name="TOP" type="StaticBody2D" parent="Camera2D"]
+position = Vector2(-13, -269)
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/TOP"]
+position = Vector2(12.5, -5)
+shape = SubResource("RectangleShape2D_3lm1y")
+
+[node name="Ground" type="StaticBody2D" parent="." groups=["GROUND"]]
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+position = Vector2(886, 738)
+shape = SubResource("RectangleShape2D_iy7r6")
+
+[node name="WALL  V" type="StaticBody2D" parent="." groups=["WALL"]]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WALL  V" groups=["WALL"]]
+position = Vector2(-44, 260.5)
+shape = SubResource("RectangleShape2D_cgkja")
+
+[node name="WALL  V2" type="StaticBody2D" parent="." groups=["WALL"]]
+position = Vector2(1859, -13)
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WALL  V2" groups=["WALL"]]
+position = Vector2(-44, 260.5)
+shape = SubResource("RectangleShape2D_cgkja")
+
+[editable path="Character Manager"]
