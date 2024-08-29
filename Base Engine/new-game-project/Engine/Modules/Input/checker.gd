@@ -11,3 +11,6 @@ func P2X():
 
 func P2Y():
 	return %Buffer2.buffer[0].key.y
+
+func GetP1Button():
+	return %Buffer.current_key.button

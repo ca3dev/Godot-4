@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://casa4y1wow040"]
+[gd_scene load_steps=5 format=3 uid="uid://casa4y1wow040"]
 
 [ext_resource type="PackedScene" uid="uid://cn80w28antclc" path="res://Engine/Modules/Character/FSM/Movement/movement.tscn" id="1_72rf1"]
 [ext_resource type="Script" path="res://Engine/Modules/Character/FSM/fsm_base.gd" id="1_y0hqr"]
 [ext_resource type="PackedScene" uid="uid://drgcch0uykqgb" path="res://Engine/Modules/Character/FSM/Normals/normals.tscn" id="2_vkshq"]
+[ext_resource type="PackedScene" uid="uid://bxaguhd6bgb8c" path="res://Engine/Modules/Character/FSM/Hurt/hurt.tscn" id="4_3r5m1"]
 
 [node name="FSM Base" type="Node" node_paths=PackedStringArray("current")]
 script = ExtResource("1_y0hqr")
@@ -11,5 +12,9 @@ current = NodePath("Movement/IDLE")
 [node name="Movement" parent="." instance=ExtResource("1_72rf1")]
 
 [node name="NORMALS" parent="." instance=ExtResource("2_vkshq")]
+
+[node name="HURT" parent="." instance=ExtResource("4_3r5m1")]
+
+[connection signal="ready" from="." to="." method="_on_ready"]
 
 [editable path="Movement"]

@@ -13,7 +13,11 @@ func Update(delta):
 		gravity = max_gravity
 
 func Start(g, x):
+	FSM.Anim.set("parameters/MOVE/blend_position", Vector2(0, 1))
 	gravity = gravity_fall * 0.5
+
+func Transition():
+	FSM.CheckAerealAttacks()
 
 func Physics(delta):
 	var speed = Vector2(0, delta * gravity * 0.5)
@@ -26,3 +30,4 @@ func Physics(delta):
 	if collision:
 		if collision.get_collider().is_in_group("GROUND"):
 			FSM.current = FSM.get_node("Movement/IDLE")
+			FSM.current.Start()

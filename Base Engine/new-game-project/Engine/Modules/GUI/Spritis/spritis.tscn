@@ -1,0 +1,166 @@
+[gd_scene load_steps=6 format=3 uid="uid://dywubrdu4v7ty"]
+
+[ext_resource type="Script" path="res://Engine/Modules/GUI/Spritis/spritis.gd" id="1_kutr4"]
+
+[sub_resource type="Animation" id="Animation_05m6d"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("round:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Number:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Fight:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("K_O:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_sn7om"]
+resource_name = "Start"
+length = 2.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("round:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.53333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Number:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.53333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Fight:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.76667, 2.43333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_ocd1g"]
+resource_name = "GameEnd"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("K_O:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.833333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_crtub"]
+_data = {
+"GameEnd": SubResource("Animation_ocd1g"),
+"RESET": SubResource("Animation_05m6d"),
+"Start": SubResource("Animation_sn7om")
+}
+
+[node name="Spritis" type="Node2D"]
+script = ExtResource("1_kutr4")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="round" type="Label" parent="CanvasLayer"]
+offset_left = 430.0
+offset_top = 212.0
+offset_right = 725.0
+offset_bottom = 374.0
+theme_override_font_sizes/font_size = 80
+text = "ROUND"
+
+[node name="K_O" type="Label" parent="CanvasLayer"]
+visible = false
+offset_left = 430.0
+offset_top = 212.0
+offset_right = 725.0
+offset_bottom = 374.0
+theme_override_font_sizes/font_size = 80
+text = "K.O."
+horizontal_alignment = 1
+
+[node name="Number" type="Label" parent="CanvasLayer"]
+offset_left = 430.0
+offset_top = 338.0
+offset_right = 725.0
+offset_bottom = 500.0
+theme_override_font_sizes/font_size = 80
+text = "1"
+horizontal_alignment = 1
+
+[node name="Fight" type="Label" parent="CanvasLayer"]
+visible = false
+offset_left = 354.0
+offset_top = 288.0
+offset_right = 838.0
+offset_bottom = 450.0
+theme_override_font_sizes/font_size = 80
+text = "COMIENZA!!!"
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer"]
+libraries = {
+"": SubResource("AnimationLibrary_crtub")
+}
+autoplay = "Start"
+
+[connection signal="animation_finished" from="CanvasLayer/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

@@ -26,6 +26,10 @@ metadata/_edit_lock_ = true
 [node name="Heroe" parent="Character Manager" index="0"]
 position = Vector2(668, 568)
 P1 = true
+A_allow = true
+B_allow = true
+C_allow = true
+D_allow = true
 
 [node name="Heroe2" parent="Character Manager" index="1"]
 position = Vector2(1012, 570)

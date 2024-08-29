@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bxaguhd6bgb8c"]
+
+[ext_resource type="Script" path="res://Engine/Modules/Character/FSM/Hurt/hurt.gd" id="1_pjwim"]
+[ext_resource type="Script" path="res://Engine/Modules/Character/FSM/Hurt/hurt state.gd" id="2_0n7eu"]
+
+[node name="HURT" type="Node"]
+script = ExtResource("1_pjwim")
+
+[node name="Hurt" type="Node" parent="."]
+script = ExtResource("2_0n7eu")

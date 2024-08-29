@@ -5,3 +5,4 @@
 [node name="Variables" type="Node"]
 script = ExtResource("1_qbvke")
 Mode = 2
+Hitstun = 0.15

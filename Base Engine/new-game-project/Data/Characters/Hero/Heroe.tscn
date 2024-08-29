@@ -1,8 +1,8 @@
-[gd_scene load_steps=89 format=3 uid="uid://bfa76lweja8xq"]
+[gd_scene load_steps=100 format=3 uid="uid://bfa76lweja8xq"]
 
 [ext_resource type="PackedScene" uid="uid://becsbgfggagu6" path="res://Engine/Modules/Character/player_prototype_FSM.tscn" id="1_yc6ox"]
-[ext_resource type="Script" path="res://Data/Characters/Hero/heroe.gd" id="2_43e2c"]
-[ext_resource type="PackedScene" uid="uid://gbfjcghu06vo" path="res://Data/Characters/Hero/sprite_data_prototype.tscn" id="2_rjsr3"]
+[ext_resource type="Script" path="res://Engine/Modules/Character/heroe.gd" id="2_43e2c"]
+[ext_resource type="PackedScene" uid="uid://1lp1dodfpxkt" path="res://Data/Characters/Hero/hitbox animation.tscn" id="3_c3isl"]
 [ext_resource type="Texture2D" uid="uid://dlceomb4ho3ff" path="res://Data/Assets/2D/Hero/raw sprites/CROUCH/hero_export_CROUCH_1.png" id="4_gxnco"]
 [ext_resource type="Texture2D" uid="uid://vyferke4qjn7" path="res://Data/Assets/2D/Hero/raw sprites/galactica_5/hero 2_export_galactica_5_01.png" id="5_m6aog"]
 [ext_resource type="Texture2D" uid="uid://bjex3f1jkkkvf" path="res://Data/Assets/2D/Hero/raw sprites/galactica_5/hero 2_export_galactica_5_02.png" id="6_fn0ip"]
@@ -76,11 +76,9 @@
 [ext_resource type="Texture2D" uid="uid://cybx2rrm1846d" path="res://Data/Assets/2D/Hero/raw sprites/WALK/hero_export_WALK_7.png" id="74_mn8pd"]
 [ext_resource type="Texture2D" uid="uid://dgnw3qmid7jul" path="res://Data/Assets/2D/Hero/raw sprites/WALK/hero_export_WALK_8.png" id="75_n515k"]
 [ext_resource type="Script" path="res://Engine/Modules/Character/separation.gd" id="76_d218n"]
+[ext_resource type="PackedScene" uid="uid://kmhkl2hcc2p7" path="res://Engine/Modules/Input/specials.tscn" id="77_on7tp"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_v2pa8"]
-radius = 3.0
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_6yv1e"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_sral2"]
 resource_local_to_scene = true
 animations = [{
 "frames": [{
@@ -355,11 +353,73 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_twd4f"]
+animation = &"PUNCH"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3apr6"]
+animation = &"Strong Punch"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4afm1"]
+animation = &"KICK"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sjsu5"]
+animation = &"KICK 2"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_crrn1"]
+animation = &"KICK"
+
 [sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_u0k6j"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_twd4f")
+blend_point_0/pos = 1.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_3apr6")
+blend_point_1/pos = 2.0
+blend_point_2/node = SubResource("AnimationNodeAnimation_4afm1")
+blend_point_2/pos = 3.0
+blend_point_3/node = SubResource("AnimationNodeAnimation_sjsu5")
+blend_point_3/pos = 4.0
+blend_point_4/node = SubResource("AnimationNodeAnimation_crrn1")
+blend_point_4/pos = 5.0
+min_space = 0.0
+max_space = 8.0
+snap = 1.0
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0m2k8"]
+animation = &"Hurt"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_om5um"]
+animation = &"areal hurt"
 
 [sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_fvt38"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_0m2k8")
+blend_point_0/pos = 1.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_om5um")
+blend_point_1/pos = 2.0
+min_space = 0.0
+max_space = 2.0
+snap = 1.0
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_iupda"]
+animation = &"IDLE"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0hjpe"]
+animation = &"CROUCHED"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_krwjo"]
+animation = &"JUMP"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_he1mf"]
+animation = &"WALK"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_5qm18"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_iupda")
+blend_point_0/pos = Vector2(0, 0)
+blend_point_1/node = SubResource("AnimationNodeAnimation_0hjpe")
+blend_point_1/pos = Vector2(0, -1)
+blend_point_2/node = SubResource("AnimationNodeAnimation_krwjo")
+blend_point_2/pos = Vector2(0, 1)
+blend_point_3/node = SubResource("AnimationNodeAnimation_he1mf")
+blend_point_3/pos = Vector2(1, 0)
+snap = Vector2(1, 1)
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dd30w"]
 advance_mode = 2
@@ -397,44 +457,60 @@ transitions = ["Start", "MOVE", SubResource("AnimationNodeStateMachineTransition
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("2_43e2c")
+HP = 100
 walk_speed = 200.0
-jump_strenght = 800.0
-jump_gravity = 1500.0
-gravity_fall = 3000.0
-max_gravity = 700.0
+jump_strenght = 1000.0
+jump_gravity = 2000.0
+gravity_fall = 3500.0
+max_gravity = 2000.0
+gravity_modifier = 200.0
 
-[node name="Achor" type="CollisionShape2D" parent="." index="0"]
-shape = SubResource("CircleShape2D_v2pa8")
-metadata/_edit_lock_ = true
-
-[node name="Hitbox" parent="Parent/Hibox" index="0" groups=["HITBOX"]]
-collision_layer = 2
-collision_mask = 2
-
-[node name="Sprite Data Prototype" parent="Parent" index="1" instance=ExtResource("2_rjsr3")]
+[node name="Parent" parent="." index="1" instance=ExtResource("3_c3isl")]
+physics_interpolation_mode = 1
 
 [node name="AnimatedSprite2D" parent="Parent/Sprite Data Prototype" index="0"]
-position = Vector2(-1, -75)
-sprite_frames = SubResource("SpriteFrames_6yv1e")
+sprite_frames = SubResource("SpriteFrames_sral2")
 
-[node name="Anim" type="AnimationTree" parent="." index="3"]
+[node name="Hitbox" parent="Parent/Hibox" index="0" groups=["HITBOX"]]
+
+[node name="Anim" type="AnimationTree" parent="." index="2"]
 unique_name_in_owner = true
+active = false
+root_node = NodePath("%Anim/../Parent/Sprite Data Prototype")
 tree_root = SubResource("AnimationNodeStateMachine_iqhwa")
+anim_player = NodePath("../Parent/Sprite Data Prototype/AnimationPlayer")
 parameters/conditions/Attack = false
 parameters/conditions/EndAnim = false
 parameters/conditions/Hurt = false
-parameters/ATTACK/blend_position = 0
-parameters/HURT/blend_position = 0
-parameters/MOVE/blend_position = Vector2(0, 0)
+parameters/ATTACK/blend_position = -0.000680745
+parameters/HURT/blend_position = 0.672566
+parameters/MOVE/blend_position = Vector2(-0.000720978, -0.0106384)
 
-[node name="FSM Base" parent="." index="4" node_paths=PackedStringArray("SpriteParent")]
+[node name="FSM Base" parent="." index="3" node_paths=PackedStringArray("SpriteParent", "Anim", "AnimPlayer")]
 walk_speed = 200.0
 SpriteParent = NodePath("../Parent")
+Anim = NodePath("../Anim")
+AnimPlayer = NodePath("../Parent/Sprite Data Prototype/AnimationPlayer")
+
+[node name="Collision" parent="Code" index="0"]
+damage_normal = 5
+
+[node name="CancelTime" type="Timer" parent="Code/Collision" index="0"]
+one_shot = true
 
 [node name="Separation" type="Node" parent="Code" index="1"]
 script = ExtResource("76_d218n")
 
+[node name="Specials" parent="Code" index="2" instance=ExtResource("77_on7tp")]
+
+[node name="HitStunt" parent="." index="5"]
+process_mode = 3
+
 [connection signal="area_entered" from="Parent/Hibox/Hitbox" to="Code/Separation" method="_on_hitbox_area_entered"]
 [connection signal="area_exited" from="Parent/Hibox/Hitbox" to="Code/Separation" method="_on_hitbox_area_exited"]
+[connection signal="area_entered" from="Parent/Hibox/AttackBox" to="Code/Collision" method="_on_attack_box_area_entered"]
+[connection signal="animation_finished" from="Anim" to="FSM Base" method="_on_anim_animation_finished"]
+[connection signal="timeout" from="Code/Collision/CancelTime" to="Code/Collision" method="_on_cancel_time_timeout"]
+[connection signal="timeout" from="HitStunt" to="." method="_on_hit_stunt_timeout"]
 
-[editable path="Parent/Sprite Data Prototype"]
+[editable path="Parent"]

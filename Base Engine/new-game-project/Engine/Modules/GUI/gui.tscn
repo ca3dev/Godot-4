@@ -1,12 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://bmgbf755ghx7q"]
+[gd_scene load_steps=4 format=3 uid="uid://bmgbf755ghx7q"]
 
+[ext_resource type="Script" path="res://Engine/Modules/GUI/gui.gd" id="1_k5yck"]
 [ext_resource type="PackedScene" uid="uid://7pvev4ibby8s" path="res://Engine/Modules/GUI/player_gui.tscn" id="1_qx75y"]
 [ext_resource type="PackedScene" uid="uid://imulj5ubndns" path="res://Engine/Modules/GUI/player_gui_2.tscn" id="2_o0afw"]
 
 [node name="GUI" type="Node2D"]
+script = ExtResource("1_k5yck")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="PlayerGUI" parent="CanvasLayer" instance=ExtResource("1_qx75y")]
 
 [node name="PlayerGUI2" parent="CanvasLayer" instance=ExtResource("2_o0afw")]
+
+[node name="ComboEndP1" type="Timer" parent="."]
+one_shot = true
+
+[node name="ComboEndP2" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="ComboEndP1" to="." method="_on_combo_end_p_1_timeout"]
+[connection signal="timeout" from="ComboEndP2" to="." method="_on_combo_end_p_2_timeout"]

@@ -5,7 +5,7 @@
 [node name="PlayerGUI2" instance=ExtResource("1_lofyv")]
 
 [node name="Panel" parent="." index="0"]
-offset_left = 889.0
+offset_left = 875.0
 offset_right = 1156.0
 
 [node name="Panel2" parent="." index="1"]
@@ -34,6 +34,21 @@ offset_top = 563.0
 offset_right = 1156.0
 offset_bottom = 646.0
 
-[node name="Label" parent="." index="5"]
-offset_left = 1063.0
-offset_right = 1114.0
+[node name="Name" parent="." index="5"]
+offset_left = 1088.0
+offset_top = 35.0
+offset_right = 1139.0
+offset_bottom = 77.0
+
+[node name="ComboHIT" parent="." index="6"]
+offset_left = 1108.0
+offset_top = 93.0
+offset_right = 1148.0
+offset_bottom = 148.0
+horizontal_alignment = 2
+
+[node name="Combolabel" parent="." index="7"]
+offset_left = 1110.0
+offset_top = 139.0
+offset_right = 1150.0
+offset_bottom = 171.0

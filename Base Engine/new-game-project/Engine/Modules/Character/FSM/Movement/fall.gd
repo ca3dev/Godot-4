@@ -13,8 +13,12 @@ func Update(delta):
 		gravity = max_gravity
 
 func Start(xdir):
+	FSM.Anim.set("parameters/MOVE/blend_position", Vector2(0, 1))
 	dirx = xdir
 	gravity = 0
+
+func Transition():
+	FSM.CheckAerealAttacks()
 
 func Physics(delta):
 	var speed = Vector2(dirx * delta * FSM.walk_speed * 1.5, delta * gravity)
@@ -25,6 +29,7 @@ func Physics(delta):
 	if collision:
 		if collision.get_collider().is_in_group("GROUND"):
 			FSM.current = FSM.get_node("Movement/IDLE")
+			FSM.current.Start()
 		if collision.get_collider().is_in_group("WALL"):
 			FSM.current = FSM.get_node("Movement/FALL_V")
 			FSM.current.Start(gravity, dirx)

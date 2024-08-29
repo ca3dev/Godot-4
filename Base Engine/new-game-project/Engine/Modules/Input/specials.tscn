@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://kmhkl2hcc2p7"]
+
+[ext_resource type="Script" path="res://Engine/Modules/Character/specials.gd" id="1_ys55w"]
+
+[node name="Specials" type="Node"]
+script = ExtResource("1_ys55w")
+Moves = Array[int]([10])
+Buttons = Array[int]([6])

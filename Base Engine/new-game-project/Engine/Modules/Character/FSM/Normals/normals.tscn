@@ -1,5 +1,18 @@
-[gd_scene format=3 uid="uid://drgcch0uykqgb"]
+[gd_scene load_steps=5 format=3 uid="uid://drgcch0uykqgb"]
+
+[ext_resource type="Script" path="res://Engine/Modules/Character/FSM/Normals/normals.gd" id="1_5scye"]
+[ext_resource type="Script" path="res://Engine/Modules/Character/FSM/Normals/attacks.gd" id="2_5sx8a"]
+[ext_resource type="Script" path="res://Engine/Modules/Character/FSM/Normals/attack.gd" id="3_p84ba"]
+[ext_resource type="Script" path="res://Engine/Modules/Character/FSM/Normals/airnormals.gd" id="4_ryoti"]
 
 [node name="NORMALS" type="Node"]
+script = ExtResource("1_5scye")
 
 [node name="Attacks" type="Node" parent="."]
+script = ExtResource("2_5sx8a")
+
+[node name="ATTACK" type="Node" parent="."]
+script = ExtResource("3_p84ba")
+
+[node name="AIRNORMALS" type="Node" parent="."]
+script = ExtResource("4_ryoti")

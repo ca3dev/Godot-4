@@ -39,3 +39,23 @@ func GetKey2():
 
 func ReadP2():
 	%Buffer2.AddKey(GetKey2())
+
+func ReadP1Buttons():
+	
+	var button = GetP1Buttons()
+	if button != "none":
+		%Buffer.AddButton(button)
+
+func GetP1Buttons():
+	var button = "none"
+	
+	if Input.is_action_pressed("AP1"):
+		button = "A"
+	if Input.is_action_pressed("BP1"):
+		button = "B"
+	if Input.is_action_pressed("CP1"):
+		button = "C"
+	if Input.is_action_pressed("DP1"):
+		button = "D"
+	
+	return button
